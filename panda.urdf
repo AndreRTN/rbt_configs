@@ -4,9 +4,9 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="panda">
-  <link name="world"/>
+  <link name="base_link"/>
   <joint name="panda_joint_world" type="fixed">
-    <parent link="world"/>
+    <parent link="base_link"/>
     <child link="panda_link0"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
@@ -330,10 +330,10 @@
   </joint>
   <joint name="panda_hand_joint" type="fixed">
     <parent link="panda_link8"/>
-    <child link="panda_hand"/>
+    <child link="finger_tip"/>
     <origin rpy="0 0 -0.785398163397" xyz="0 0 0"/>
   </joint>
-  <gazebo reference="panda_hand"/>
+  <gazebo reference="finger_tip"/>
   <gazebo reference="panda_leftfinger"/>
   <gazebo reference="panda_rightfinger"/>
   <transmission name="panda_finger_joint1_trans">
@@ -354,7 +354,7 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-  <link name="panda_hand">
+  <link name="finger_tip">
     <inertial>
       <mass value="0.73"/>
       <origin rpy="0 0 0" xyz="0 0.0015244 0.0275912"/>
@@ -421,14 +421,14 @@
     </collision>
   </link>
   <joint name="panda_finger_joint1" type="prismatic">
-    <parent link="panda_hand"/>
+    <parent link="finger_tip"/>
     <child link="panda_leftfinger"/>
     <origin rpy="0 0 0" xyz="0 0 0.0584"/>
     <axis xyz="0 1 0"/>
     <limit effort="20" lower="-0.001" upper="0.04" velocity="0.3"/>
   </joint>
   <joint name="panda_finger_joint2" type="prismatic">
-    <parent link="panda_hand"/>
+    <parent link="finger_tip"/>
     <child link="panda_rightfinger"/>
     <origin rpy="0 0 0" xyz="0 0 0.0584"/>
     <axis xyz="0 -1 0"/>
